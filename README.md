@@ -1,14 +1,16 @@
 # GitOps ArgoCD Kubernetes Project
+<img width="4393" height="2161" alt="Untitled Diagram drawio (15)" src="https://github.com/user-attachments/assets/868bc218-21f7-44cd-b80f-79c0df9d8162" />
 
-## 📋 Project Overview
+
+## Project Overview
 
 This is a **GitOps-based deployment project** using **ArgoCD** to manage Kubernetes applications. The project demonstrates continuous synchronization of Git repository state with Kubernetes cluster state, enabling declarative infrastructure as code practices.
 
 **Repository**: [dineth28-max/argocd-project](https://github.com/dineth28-max/argocd-project)
 
----
 
-## 📂 Project Structure
+
+## Project Structure
 
 ```
 argocd-app-config/
@@ -19,9 +21,9 @@ argocd-app-config/
     └── service.yaml          # Kubernetes Service
 ```
 
----
 
-## 🔧 Core Components
+
+## Core Components
 
 ### 1. ArgoCD Application (`application.yaml`)
 
@@ -37,10 +39,10 @@ argocd-app-config/
 | **Target Namespace** | `myapp` |
 
 **Sync Policies**:
-- ✅ **Auto-sync enabled** - Continuous synchronization
-- ✅ **Self-healing** - Automatically reconciles drift
-- ✅ **Auto-prune** - Removes resources deleted from Git
-- ✅ **Create namespace** - Auto-creates `myapp` namespace
+- **Auto-sync enabled** - Continuous synchronization
+- **Self-healing** - Automatically reconciles drift
+- **Auto-prune** - Removes resources deleted from Git
+- **Create namespace** - Auto-creates `myapp` namespace
 
 ### 2. Kubernetes Deployment (`dev/deployment.yaml`)
 
@@ -71,9 +73,9 @@ argocd-app-config/
 
 **Purpose**: Internal service discovery and load balancing for the deployment
 
----
 
-## 🚀 GitOps Workflow
+
+## GitOps Workflow
 
 ```
 Git Repository (GitHub)
@@ -93,9 +95,8 @@ Application updates in Kubernetes cluster
 (2 replicas in myapp namespace)
 ```
 
----
 
-## 🏗️ Technology Stack & Languages
+## Technology Stack & Languages
 
 | Technology | Purpose | Version |
 |------------|---------|---------|
@@ -138,15 +139,15 @@ Application updates in Kubernetes cluster
 - Base image format specification
 - Port exposure: 8080
 
----
 
-## 📊 Deployment Architecture
+
+##  Deployment Architecture
 
 ```
-┌─────────────────────────────────────────────┐
-│     Kubernetes Cluster                      │
-├─────────────────────────────────────────────┤
-│                                             │
+┌────────────────────────────────────────────┐
+│     Kubernetes Cluster                     │
+├────────────────────────────────────────────┤
+│                                            │
 │  ┌──────────────────────────────────────┐  │
 │  │   ArgoCD Namespace (argocd)          │  │
 │  │  ┌────────────────────────────────┐  │  │
@@ -155,7 +156,7 @@ Application updates in Kubernetes cluster
 │  │  │ myapp-argo-application         │  │  │
 │  │  └────────────────────────────────┘  │  │
 │  └──────────────────────────────────────┘  │
-│                                             │
+│                                            │
 │  ┌──────────────────────────────────────┐  │
 │  │   myapp Namespace (auto-created)     │  │
 │  │  ┌────────────────────────────────┐  │  │
@@ -168,11 +169,11 @@ Application updates in Kubernetes cluster
 │  │  └────────────────────────────────┘  │  │
 │  │  ┌────────────────────────────────┐  │  │
 │  │  │ Service: myapp-service         │  │  │
-│  │  │ Port: 8080 → TargetPort: 8080 │  │  │
+│  │  │ Port: 8080 → TargetPort: 60665 │  │  │
 │  │  └────────────────────────────────┘  │  │
 │  └──────────────────────────────────────┘  │
-│                                             │
-└─────────────────────────────────────────────┘
+│                                            │
+└────────────────────────────────────────────┘
         ↕
     GitHub Repository
     (Source of Truth)
@@ -191,9 +192,9 @@ Application updates in Kubernetes cluster
 | **Authentication** | Secret-based | `argocd-initial-admin-secret` |
 | **Port Security** | Port-forward | No direct cluster exposure |
 
----
 
-## 📝 Installation & Setup
+
+## Installation & Setup
 
 ### Prerequisites
 ```bash
@@ -260,7 +261,7 @@ The ArgoCD Application will automatically:
 
 ---
 
-## 🔄 Key Features
+## Key Features
 
 | Feature | Status | Benefit |
 |---------|--------|---------|
@@ -274,7 +275,7 @@ The ArgoCD Application will automatically:
 
 ---
 
-## 📊 Current Status Verification
+## Current Status Verification
 
 ```bash
 # Check ArgoCD Application status
@@ -295,7 +296,7 @@ kubectl logs -n myapp -l app=myapp
 
 ---
 
-## 🔄 Update Workflow
+## Update Workflow
 
 To update the application:
 
@@ -318,33 +319,26 @@ git push origin main
 
 ---
 
-## 📚 Documentation & References
+## Documentation & References
 
 - **Official ArgoCD Documentation**: https://argo-cd.readthedocs.io/
 - **Kubernetes Documentation**: https://kubernetes.io/docs/
 - **GitOps Principles**: https://www.gitops.tech/
 - **Docker Hub Repository**: https://hub.docker.com/
 
-### Related Links
-- **Install ArgoCD**: [Getting Started Guide](https://argo-cd.readthedocs.io/en/stable/getting_started/#1-install-argo-cd)
-- **Login Guide**: [ArgoCD CLI Login](https://argo-cd.readthedocs.io/en/stable/getting_started/#4-login-using-the-cli)
-- **Advanced Configuration**: [Declarative Setup](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/)
+## Project Goals & Best Practices
 
----
+ **Declarative Infrastructure**: All infrastructure defined in Git  
+ **Version Control**: Track all changes through Git history  
+ **Immutable Deployments**: Using container images for consistency  
+ **Automated Deployment**: Git push triggers automatic updates  
+ **Self-Healing**: Automatic drift correction  
+ **High Availability**: Multiple replicas for resilience  
+ **Single Source of Truth**: GitHub as the authoritative source  
 
-## 🎯 Project Goals & Best Practices
 
-✅ **Declarative Infrastructure**: All infrastructure defined in Git  
-✅ **Version Control**: Track all changes through Git history  
-✅ **Immutable Deployments**: Using container images for consistency  
-✅ **Automated Deployment**: Git push triggers automatic updates  
-✅ **Self-Healing**: Automatic drift correction  
-✅ **High Availability**: Multiple replicas for resilience  
-✅ **Single Source of Truth**: GitHub as the authoritative source  
 
----
-
-## 📈 Monitoring & Troubleshooting
+##  Monitoring & Troubleshooting
 
 ### Check Application Status
 ```bash
@@ -373,13 +367,13 @@ kubectl describe deployment myapp -n myapp
 
 ---
 
-## 👨‍💻 Project Owner
+##  Project Owner
 
 **Repository**: dineth28-max/argocd-project  
 **Container Registry**: dineth123412/web  
 **Branch**: main  
 
----
+
 
 ## 📄 License & Contribution
 
