@@ -12,6 +12,8 @@ spec:
       labels:
         app: webapp
     spec:
+      imagePullSecrets:
+        - name: dockerhub-secret
       containers:
         - name: web
           image: dineth123412/web:tag1
