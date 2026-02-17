@@ -6,8 +6,8 @@ spec:
   selector:
     app: webapp
   ports:
-  - port: 80
-    protocol: TCP
-    targetPort: 80
-  type: LoadBalancer
-  
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      nodePort: 30080  # pick any unused port 30000-32767
+  type: NodePort
