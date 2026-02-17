@@ -1,16 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: webapp-service
-  labels:
-    app: webapp
+  name: myapp-service
 spec:
   selector:
-    app: webapp
-  type: LoadBalancer
+    app: myapp
   ports:
-    - port: 80
-      targetPort: 80
-      protocol: TCP
-      name: http
-  sessionAffinity: None
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  
